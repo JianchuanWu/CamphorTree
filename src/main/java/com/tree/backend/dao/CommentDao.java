@@ -11,9 +11,9 @@ import com.tree.backend.model.Comment;
 @Repository
 public interface CommentDao extends CrudRepository<Comment, Long> {
 
-	Comment save (Comment comment);
+    Comment save(Comment comment);
 
-	Comment findOne (Long commentId);
+    Comment findOne(Long commentId);
 
-	List<Comment> findByPhotoId (Long photoId);
+    List<Comment> findByPhotoId(Long photoId);
 }

@@ -13,21 +13,25 @@ import com.tree.backend.service.CommentService;
 import com.tree.backend.service.PhotoService;
 
 @RestController
-@RequestMapping( "/rest" )
+@RequestMapping("/rest")
 public class CommentResources {
 
-	@Autowired
-	private PhotoService	photoService;
+    private final PhotoService photoService;
 
-	@Autowired
-	private CommentService	commentService;
+    private final CommentService commentService;
 
-	@RequestMapping( value = "/comment/add", method = RequestMethod.POST )
-	public void addComment (@RequestBody
-	Comment comment) {
-		Photo photo = photoService.findByPhotoId(comment.getPhotoId());
-		comment.setPhoto(photo);
-		commentService.save(comment);
-	}
+    @Autowired
+    public CommentResources(PhotoService photoService, CommentService commentService) {
+        this.photoService = photoService;
+        this.commentService = commentService;
+    }
+
+    @RequestMapping(value = "/comment/add", method = RequestMethod.POST)
+    public void addComment(@RequestBody
+                                   Comment comment) {
+        Photo photo = photoService.findByPhotoId(comment.getPhotoId());
+        comment.setPhoto(photo);
+        commentService.save(comment);
+    }
 
 }

@@ -13,16 +13,16 @@ import com.tree.backend.model.User;
 @Repository
 public interface PhotoDao extends CrudRepository<Photo, Long> {
 
-	Photo save (Photo photo);
-	
-	List<Photo> findByUser (User user);
+    Photo save(Photo photo);
 
-	Photo findByPhotoId (Long photoId);
-	
-	@Query("from Photo where deleted=0 order by created desc")
-	List<Photo> findAll();
-	
-	@Query("from Photo where user_user_id=?1 and deleted=0 order by created desc")
-	List<Photo> findByUserId(Long userId);
+    List<Photo> findByUser(User user);
+
+    Photo findByPhotoId(Long photoId);
+
+    @Query("from Photo where deleted=0 order by created desc")
+    List<Photo> findAll();
+
+    @Query("from Photo where user_user_id=?1 and deleted=0 order by created desc")
+    List<Photo> findByUserId(Long userId);
 
 }

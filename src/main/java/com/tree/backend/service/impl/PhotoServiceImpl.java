@@ -15,38 +15,37 @@ import com.tree.backend.model.User;
 import com.tree.backend.service.PhotoService;
 
 @Service
-@Transactional( propagation = Propagation.SUPPORTS, readOnly = true )
+@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 public class PhotoServiceImpl implements PhotoService {
 
-	@Autowired
-	private PhotoDao photoDao;
+    @Autowired
+    private PhotoDao photoDao;
 
-	@Override
-	@Transactional( propagation = Propagation.REQUIRED, readOnly = false )
-	@CachePut( value = "tree", key = "#result.photoId" )
-	public Photo save (Photo photo) {
-		return photoDao.save(photo);
-	}
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED)
+    @CachePut(value = "tree", key = "#result.photoId")
+    public Photo save(Photo photo) {
+        return photoDao.save(photo);
+    }
 
-	@Override
-	public List<Photo> findByUser (User user) {
-		return photoDao.findByUser(user);
-	}
+    @Override
+    public List<Photo> findByUser(User user) {
+        return photoDao.findByUser(user);
+    }
 
-	@Override
-	// @Cacheable( value = "tree", key = "#photoId" )
-	public Photo findByPhotoId (Long photoId) {
-		return photoDao.findByPhotoId(photoId);
-	}
+    @Override
+    public Photo findByPhotoId(Long photoId) {
+        return photoDao.findByPhotoId(photoId);
+    }
 
-	@Override
-	public List<Photo> findAll () {
-		return photoDao.findAll();
-	}
+    @Override
+    public List<Photo> findAll() {
+        return photoDao.findAll();
+    }
 
-	@Override
-	public List<Photo> findByUserId (Long userId) {
-		return photoDao.findByUserId(userId);
-	}
+    @Override
+    public List<Photo> findByUserId(Long userId) {
+        return photoDao.findByUserId(userId);
+    }
 
 }

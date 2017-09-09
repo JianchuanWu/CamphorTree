@@ -8,14 +8,14 @@ import com.tree.backend.model.User;
 
 public interface PhotoService {
 
-	Photo save (Photo photo);
+    Photo save(Photo photo);
 
-	List<Photo> findByUser (User user);
+    List<Photo> findByUser(User user);
 
-	Photo findByPhotoId (Long photoId);
-	
-	List<Photo> findAll();
-	
-	List<Photo> findByUserId (Long userId);
+    Photo findByPhotoId(Long photoId);
+
+    List<Photo> findAll();
+
+    List<Photo> findByUserId(Long userId);
 
 }

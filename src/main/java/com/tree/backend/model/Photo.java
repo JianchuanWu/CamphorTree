@@ -20,111 +20,111 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 @Entity
 public class Photo {
 
-	@Id
-	@GeneratedValue( strategy = GenerationType.AUTO )
-	private Long			photoId;
-	private String			photoName;
-	private String			title;
-	private String			description;
-	private String			imageName;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long photoId;
+    private String photoName;
+    private String title;
+    private String description;
+    private String imageName;
 
-	@Column( columnDefinition = "TINYINT default 0" )
-	private Integer			deleted;
+    @Column(columnDefinition = "TINYINT default 0")
+    private Integer deleted;
 
-	@CreationTimestamp
-	private Date			created;
+    @CreationTimestamp
+    private Date created;
 
-	@ManyToOne
-	// @JsonIgnore // 作用是json序列化时将java bean中的一些属性忽略掉
-	@JsonBackReference
-	private User			user;
+    @ManyToOne
+    // @JsonIgnore // 作用是json序列化时将java bean中的一些属性忽略掉
+    @JsonBackReference
+    private User user;
 
-	private int				likes;
+    private int likes;
 
-	/**
-	 * 
-	 */
-	@OneToMany( mappedBy = "photo", fetch = FetchType.EAGER )
-	private List<Comment>	commentList;
+    /**
+     *
+     */
+    @OneToMany(mappedBy = "photo", fetch = FetchType.EAGER)
+    private List<Comment> commentList;
 
-	public Long getPhotoId () {
-		return photoId;
-	}
+    public Long getPhotoId() {
+        return photoId;
+    }
 
-	public void setPhotoId (Long photoId) {
-		this.photoId = photoId;
-	}
+    public void setPhotoId(Long photoId) {
+        this.photoId = photoId;
+    }
 
-	public String getPhotoName () {
-		return photoName;
-	}
+    public String getPhotoName() {
+        return photoName;
+    }
 
-	public void setPhotoName (String photoName) {
-		this.photoName = photoName;
-	}
+    public void setPhotoName(String photoName) {
+        this.photoName = photoName;
+    }
 
-	public String getTitle () {
-		return title;
-	}
+    public String getTitle() {
+        return title;
+    }
 
-	public void setTitle (String title) {
-		this.title = title;
-	}
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-	public String getDescription () {
-		return description;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public void setDescription (String description) {
-		this.description = description;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public String getImageName () {
-		return imageName;
-	}
+    public String getImageName() {
+        return imageName;
+    }
 
-	public void setImageName (String imageName) {
-		this.imageName = imageName;
-	}
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
+    }
 
-	public Date getCreated () {
-		return created;
-	}
+    public Date getCreated() {
+        return created;
+    }
 
-	public void setCreated (Date created) {
-		this.created = created;
-	}
+    public void setCreated(Date created) {
+        this.created = created;
+    }
 
-	public User getUser () {
-		return user;
-	}
+    public User getUser() {
+        return user;
+    }
 
-	public void setUser (User user) {
-		this.user = user;
-	}
+    public void setUser(User user) {
+        this.user = user;
+    }
 
-	public int getLikes () {
-		return likes;
-	}
+    public int getLikes() {
+        return likes;
+    }
 
-	public void setLikes (int likes) {
-		this.likes = likes;
-	}
+    public void setLikes(int likes) {
+        this.likes = likes;
+    }
 
-	public List<Comment> getCommentList () {
-		return commentList;
-	}
+    public List<Comment> getCommentList() {
+        return commentList;
+    }
 
-	public void setCommentList (List<Comment> commentList) {
-		this.commentList = commentList;
-	}
+    public void setCommentList(List<Comment> commentList) {
+        this.commentList = commentList;
+    }
 
-	public Integer getDeleted () {
-		return deleted;
-	}
+    public Integer getDeleted() {
+        return deleted;
+    }
 
-	public void setDeleted (Integer deleted) {
-		this.deleted = deleted;
-	}
+    public void setDeleted(Integer deleted) {
+        this.deleted = deleted;
+    }
 
 }

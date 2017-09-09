@@ -9,7 +9,7 @@ import com.tree.backend.model.User;
 @Repository
 public interface UserDao extends CrudRepository<User, Long> {
 
-	User save (User user);
-	
-	User findByUserName(String userName);
+    User save(User user);
+
+    User findByUserName(String userName);
 }

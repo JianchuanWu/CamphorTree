@@ -11,27 +11,31 @@ import com.tree.backend.model.User;
 import com.tree.backend.service.UserService;
 
 @RestController
-@RequestMapping( "/rest" )
+@RequestMapping("/rest")
 public class UserResources {
 
-	@Autowired
-	UserService userService;
+    final UserService userService;
 
-	@RequestMapping( "/user/users" )
-	public String loginSuccess () {
-		return "Login Successful.";
-	}
+    @Autowired
+    public UserResources(UserService userService) {
+        this.userService = userService;
+    }
 
-	@RequestMapping( value = "/user/username", method = RequestMethod.POST )
-	public User findByUserName (@RequestBody
-	String userName) {
-		return userService.findByUserName(userName);
-	}
+    @RequestMapping("/user/users")
+    public String loginSuccess() {
+        return "Login Successful.";
+    }
 
-	@RequestMapping( value = "/user/update", method = RequestMethod.POST )
-	public User updateUser (@RequestBody
-	User user) {
-		return userService.save(user);
-	}
+    @RequestMapping(value = "/user/username", method = RequestMethod.POST)
+    public User findByUserName(@RequestBody
+                                       String userName) {
+        return userService.findByUserName(userName);
+    }
+
+    @RequestMapping(value = "/user/update", method = RequestMethod.POST)
+    public User updateUser(@RequestBody
+                                   User user) {
+        return userService.save(user);
+    }
 
 }

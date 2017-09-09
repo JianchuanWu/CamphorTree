@@ -21,27 +21,27 @@ import com.tree.backend.config.JwtFilter;
 @EnableTransactionManagement
 public class BackendApplication extends SpringBootServletInitializer {
 
-	@Override
-	protected SpringApplicationBuilder configure (
-	        SpringApplicationBuilder builder) {
-		return builder.sources(this.getClass());
-	}
+    @Override
+    protected SpringApplicationBuilder configure(
+            SpringApplicationBuilder builder) {
+        return builder.sources(this.getClass());
+    }
 
-	@Bean
-	public FilterRegistrationBean jwtFilter () {
-		final FilterRegistrationBean registrationBean = new FilterRegistrationBean();
-		registrationBean.setFilter((Filter) new JwtFilter());
-		registrationBean.addUrlPatterns("/rest/*");
-		return registrationBean;
-	}
+    @Bean
+    public FilterRegistrationBean jwtFilter() {
+        final FilterRegistrationBean registrationBean = new FilterRegistrationBean();
+        registrationBean.setFilter(new JwtFilter());
+        registrationBean.addUrlPatterns("/rest/*");
+        return registrationBean;
+    }
 
-	@Bean
-	public CacheManager cacheManageer () {
-		GuavaCacheManager cacheManager = new GuavaCacheManager("tree");
-		return cacheManager;
-	}
+    @Bean
+    public CacheManager cacheManageer() {
+        GuavaCacheManager cacheManager = new GuavaCacheManager("tree");
+        return cacheManager;
+    }
 
-	public static void main (String[] args) {
-		SpringApplication.run(BackendApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(BackendApplication.class, args);
+    }
 }

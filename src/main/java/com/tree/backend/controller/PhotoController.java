@@ -22,45 +22,49 @@ import com.tree.backend.model.Photo;
 import com.tree.backend.service.PhotoService;
 
 @RestController
-@RequestMapping( "/photo" )
+@RequestMapping("/photo")
 public class PhotoController {
 
-	public static String imageName;
+    static String imageName;
 
-	@RequestMapping( value = "/upload", method = RequestMethod.POST )
-	public String upload (HttpServletResponse response,
-	        HttpServletRequest request) {
-		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
-		Iterator<String> it = multipartRequest.getFileNames();
-		MultipartFile multipartFile = multipartRequest.getFile(it.next());
-		String fileName = multipartFile.getOriginalFilename();
-		imageName = fileName;
+    @Autowired
+    public PhotoController(PhotoService photoService) {
+        this.photoService = photoService;
+    }
 
-		String path = new File(ClassUtils.getDefaultClassLoader().getResource("").getPath()+"/static/images")
-		        .getAbsolutePath() + "/" + fileName;
+    @RequestMapping(value = "/upload", method = RequestMethod.POST)
+    public String upload(HttpServletResponse response,
+                         HttpServletRequest request) {
+        MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+        Iterator<String> it = multipartRequest.getFileNames();
+        MultipartFile multipartFile = multipartRequest.getFile(it.next());
+        String fileName = multipartFile.getOriginalFilename();
+        imageName = fileName;
 
-		try {
-			multipartFile.transferTo(new File(path));
-			System.out.println(path);
-		} catch ( IOException e ) {
-			e.printStackTrace();
-		}
+        String path = new File(ClassUtils.getDefaultClassLoader().getResource("").getPath() + "/static/images")
+                .getAbsolutePath() + "/" + fileName;
 
-		return imageName;
-	}
+        try {
+            multipartFile.transferTo(new File(path));
+            System.out.println(path);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-	@Autowired
-	private PhotoService photoService;
+        return imageName;
+    }
 
-	@RequestMapping( "/allPhotos" )
-	public List<Photo> getAllPhotos () {
-		return photoService.findAll();
-	}
+    private final PhotoService photoService;
 
-	@RequestMapping( value = "/photoId", method = RequestMethod.POST )
-	public Photo getPhotoById (@RequestBody
-	Long photoId) {
-		return photoService.findByPhotoId(photoId);
-	}
+    @RequestMapping("/allPhotos")
+    public List<Photo> getAllPhotos() {
+        return photoService.findAll();
+    }
+
+    @RequestMapping(value = "/photoId", method = RequestMethod.POST)
+    public Photo getPhotoById(@RequestBody
+                                      Long photoId) {
+        return photoService.findByPhotoId(photoId);
+    }
 
 }

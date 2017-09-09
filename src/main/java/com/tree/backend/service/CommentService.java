@@ -7,9 +7,9 @@ import com.tree.backend.model.Comment;
 
 public interface CommentService {
 
-	Comment save (Comment comment);
+    Comment save(Comment comment);
 
-	Comment findOne (Long commentId);
+    Comment findOne(Long commentId);
 
-	List<Comment> findByPhotoId (Long photoId);
+    List<Comment> findByPhotoId(Long photoId);
 }

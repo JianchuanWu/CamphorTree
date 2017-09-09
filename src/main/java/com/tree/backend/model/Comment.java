@@ -12,65 +12,65 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class Comment {
 
-	@Id
-	@GeneratedValue( strategy = GenerationType.AUTO )
-	private Long	commentId;
-	private String	content;
-	private String	headImage;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long commentId;
+    private String content;
+    private String headImage;
 
-	@ManyToOne
-	@JsonIgnore
-	private Photo	photo;
+    @ManyToOne
+    @JsonIgnore
+    private Photo photo;
 
-	private Long	photoId;
-	private String	userName;
+    private Long photoId;
+    private String userName;
 
-	public Long getCommentId () {
-		return commentId;
-	}
+    public Long getCommentId() {
+        return commentId;
+    }
 
-	public void setCommentId (Long commentId) {
-		this.commentId = commentId;
-	}
+    public void setCommentId(Long commentId) {
+        this.commentId = commentId;
+    }
 
-	public String getContent () {
-		return content;
-	}
+    public String getContent() {
+        return content;
+    }
 
-	public void setContent (String content) {
-		this.content = content;
-	}
+    public void setContent(String content) {
+        this.content = content;
+    }
 
-	public Photo getPhoto () {
-		return photo;
-	}
+    public Photo getPhoto() {
+        return photo;
+    }
 
-	public void setPhoto (Photo photo) {
-		this.photo = photo;
-	}
+    public void setPhoto(Photo photo) {
+        this.photo = photo;
+    }
 
-	public Long getPhotoId () {
-		return photoId;
-	}
+    public Long getPhotoId() {
+        return photoId;
+    }
 
-	public void setPhotoId (Long photoId) {
-		this.photoId = photoId;
-	}
+    public void setPhotoId(Long photoId) {
+        this.photoId = photoId;
+    }
 
-	public String getUserName () {
-		return userName;
-	}
+    public String getUserName() {
+        return userName;
+    }
 
-	public void setUserName (String userName) {
-		this.userName = userName;
-	}
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
-	public String getHeadImage () {
-		return headImage;
-	}
+    public String getHeadImage() {
+        return headImage;
+    }
 
-	public void setHeadImage (String headImage) {
-		this.headImage = headImage;
-	}
+    public void setHeadImage(String headImage) {
+        this.headImage = headImage;
+    }
 
 }
