@@ -27,14 +27,12 @@ public class UserResources {
     }
 
     @RequestMapping(value = "/user/username", method = RequestMethod.POST)
-    public User findByUserName(@RequestBody
-                                       String userName) {
+    public User findByUserName(@RequestBody String userName) {
         return userService.findByUserName(userName);
     }
 
     @RequestMapping(value = "/user/update", method = RequestMethod.POST)
-    public User updateUser(@RequestBody
-                                   User user) {
+    public User updateUser(@RequestBody User user) {
         return userService.save(user);
     }
 

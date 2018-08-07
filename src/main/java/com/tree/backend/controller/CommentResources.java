@@ -22,13 +22,14 @@ public class CommentResources {
 
     @Autowired
     public CommentResources(PhotoService photoService, CommentService commentService) {
+
         this.photoService = photoService;
         this.commentService = commentService;
     }
 
     @RequestMapping(value = "/comment/add", method = RequestMethod.POST)
-    public void addComment(@RequestBody
-                                   Comment comment) {
+    public void addComment(@RequestBody Comment comment) {
+
         Photo photo = photoService.findByPhotoId(comment.getPhotoId());
         comment.setPhoto(photo);
         commentService.save(comment);

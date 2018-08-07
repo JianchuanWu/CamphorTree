@@ -30,42 +30,33 @@ public class UserController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public User registerUser(@RequestBody
-                                     User user) {
+    public User registerUser(@RequestBody User user) {
+
         user.setHeadImage(PhotoController.imageName);
         return userService.save(user);
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String registerUser(@RequestBody
-                                       Map<String, String> json) throws ServletException {
-        if (json.get("userName") == null
-                || json.get("password") == null) {
-            throw new ServletException(
-                    "Please fill in userName and password!");
-        }
+    public String registerUser(@RequestBody Map<String, String> json) throws ServletException {
 
+        if (json.get("userName") == null || json.get("password") == null) {
+            throw new ServletException("Please fill in userName and password!");
+        }
         String userName = json.get("userName");
         String password = json.get("password");
-
         User user = userService.findByUserName(userName);
-
         if (user == null) {
-            throw new ServletException(
-                    "User name not found.");
+            throw new ServletException("User name not found.");
         }
-
         String pwd = user.getPassword();
-
         if (!password.equals(pwd)) {
-            throw new ServletException(
-                    "Invalid login. Please check you name and password.");
+            throw new ServletException("Invalid login. Please check you name and password.");
         }
-
-        return Jwts.builder().setSubject(userName).claim("roles", "user")
+        return Jwts.builder()
+                .setSubject(userName)
+                .claim("roles", "user")
                 .setIssuedAt(new Date())
-                .signWith(SignatureAlgorithm.HS256, "secretkey").compact();
-
+                .signWith(SignatureAlgorithm.HS256, "secretkey")
+                .compact();
     }
-
 }

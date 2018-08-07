@@ -1,8 +1,6 @@
 
 package com.tree.backend;
 
-import javax.servlet.Filter;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -37,8 +35,7 @@ public class BackendApplication extends SpringBootServletInitializer {
 
     @Bean
     public CacheManager cacheManageer() {
-        GuavaCacheManager cacheManager = new GuavaCacheManager("tree");
-        return cacheManager;
+        return new GuavaCacheManager("tree");
     }
 
     public static void main(String[] args) {
