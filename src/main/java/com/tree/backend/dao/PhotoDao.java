@@ -13,6 +13,7 @@ import com.tree.backend.model.User;
 @Repository
 public interface PhotoDao extends CrudRepository<Photo, Long> {
 
+    @Override
     Photo save(Photo photo);
 
     List<Photo> findByUser(User user);

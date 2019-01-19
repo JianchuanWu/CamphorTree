@@ -1,14 +1,8 @@
 
 package com.tree.backend.controller;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Iterator;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.tree.backend.model.Photo;
+import com.tree.backend.service.PhotoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ClassUtils;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,8 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.tree.backend.model.Photo;
-import com.tree.backend.service.PhotoService;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.IOException;
+import java.util.Iterator;
+import java.util.List;
 
 @RestController
 @RequestMapping("/photo")
@@ -33,8 +31,8 @@ public class PhotoController {
     }
 
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
-    public String upload(HttpServletResponse response,
-                         HttpServletRequest request) {
+    public String upload(HttpServletResponse response, HttpServletRequest request) {
+
         MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
         Iterator<String> it = multipartRequest.getFileNames();
         MultipartFile multipartFile = multipartRequest.getFile(it.next());
@@ -43,14 +41,12 @@ public class PhotoController {
 
         String path = new File(ClassUtils.getDefaultClassLoader().getResource("").getPath() + "/static/images")
                 .getAbsolutePath() + "/" + fileName;
-
         try {
             multipartFile.transferTo(new File(path));
             System.out.println(path);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return imageName;
     }
 
@@ -62,8 +58,7 @@ public class PhotoController {
     }
 
     @RequestMapping(value = "/photoId", method = RequestMethod.POST)
-    public Photo getPhotoById(@RequestBody
-                                      Long photoId) {
+    public Photo getPhotoById(@RequestBody Long photoId) {
         return photoService.findByPhotoId(photoId);
     }
 

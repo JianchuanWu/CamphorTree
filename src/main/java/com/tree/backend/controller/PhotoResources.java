@@ -25,31 +25,29 @@ public class PhotoResources {
     }
 
     @RequestMapping(value = "/photo/add", method = RequestMethod.POST)
-    public Photo addPhoto(@RequestBody
-                                  Photo photo) {
+    public Photo addPhoto(@RequestBody Photo photo) {
+
         photo.setImageName(PhotoController.imageName);
         photo.setDeleted(0);
         return photoService.save(photo);
     }
 
     @RequestMapping(value = "/photo/user", method = RequestMethod.POST)
-    public List<Photo> getPhotoByUser(@RequestBody
-                                              User user) {
-        //return photoService.findByUser(user);
+    public List<Photo> getPhotoByUser(@RequestBody User user) {
         return photoService.findByUserId(user.getUserId());
     }
 
     @RequestMapping(value = "/photo/update", method = RequestMethod.POST)
-    public void updatePhoto(@RequestBody
-                                    Photo photo) {
+    public void updatePhoto(@RequestBody Photo photo) {
+
         Photo currentPhoto = photoService.findByPhotoId(photo.getPhotoId());
         currentPhoto.setLikes(photo.getLikes());
         photoService.save(currentPhoto);
     }
 
     @RequestMapping(value = "/photo/delete", method = RequestMethod.POST)
-    public void deletePhoto(@RequestBody
-                                    Long photoId) {
+    public void deletePhoto(@RequestBody Long photoId) {
+
         Photo currentPhoto = photoService.findByPhotoId(photoId);
         currentPhoto.setDeleted(1);
         photoService.save(currentPhoto);
